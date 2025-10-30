@@ -1,4 +1,4 @@
-import ProductosService from "../modules/producto.service";
+import ProductosService from "../modules/producto.service.js";
 
 document.addEventListener("DOMContentLoaded", function(){
     const productList = document.getElementById('product-list');
@@ -11,9 +11,7 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log("Alto de la pantalla: " + window.screen.height + 'px');
 
     async function getProductos() {
-        products = await ProductosService.getProductos()
-
-        products = await products.json();
+        let products = await ProductosService.getProductos()
 
         products.forEach(product =>{
             const productItem = document.createElement('li');
@@ -70,9 +68,7 @@ document.addEventListener("DOMContentLoaded", function(){
         if(filtro === ''){
             getProductos();
         }else{
-            let products = await ProductosService.buscarProducto(filtro)
-
-            products = await products.json();
+            let products = await ProductosService.buscarProducto(filtro);
 
             products.forEach(product =>{
             const productItem = document.createElement('li');
